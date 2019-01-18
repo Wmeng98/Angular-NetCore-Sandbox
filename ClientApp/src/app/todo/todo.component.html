@@ -1,0 +1,21 @@
+<!-- 
+<div class="box-dimensions">
+  <div class="list-group">
+      <a href="#" class="list-group-item list-group-item-action" *ngFor="let item of todoList">
+        {{item.shortDescription}}
+      </a>
+  </div>
+</div> -->
+
+<ul class="todo-list">
+    <li *ngFor="let item of todoList">
+        <!-- <a routerLink="/detail/{{hero.id}}"> -->
+          <a href="#">
+              <span class="badge">{{item.id}}</span> {{item.shortDescription}}
+          </a>
+        <!-- </a> -->
+        <!-- (click)="delete(hero)" -->
+        <button class="delete" title="delete hero">x</button> 
+    </li>
+    
+</ul>

@@ -21,6 +21,7 @@ namespace sandbox
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddCors();
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -45,6 +46,9 @@ namespace sandbox
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            // Enable CORS with CORS Middleware, needs to be before app.UseMVC
+            app.UseCors(options => options.WithOrigins("http://localhost:4200").WithMethods("POST", "GET", "PATCH", "PUT", "DELETE").AllowAnyHeader());
 
             app.UseMvc(routes =>
             {
