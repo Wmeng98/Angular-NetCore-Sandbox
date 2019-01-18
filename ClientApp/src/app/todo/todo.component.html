@@ -19,3 +19,21 @@
     </li>
     
 </ul>
+
+<form class="form-add-item">
+    <div class="form-group">
+      <label for="shortDescription-Input">Add Todo Item</label>
+      <input #short type="inputbox" class="form-control" id="short" placeholder="Enter todo">
+    </div>
+    <small id="confidentiality-notice" class="form-text text-muted">Note: it is advised that you don't enter any confidential information</small>
+    <div class="form-group">
+        <label for="longDescription-Input">(Optional) Description of Item</label>
+        <textarea #long class="form-control" id="long" rows="3"></textarea>
+    </div>
+    <div>
+        <button id="add" type="Add Todo Item" class="btn"
+                (click)="add(short.value, long.value); short.value=''; long.value='';">
+        Add Item</button>
+    
+    </div>
+</form>

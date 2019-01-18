@@ -71,3 +71,10 @@
     color: white;
   }
   
+  .form-add-item {
+    margin: 0 0 2em 1em;
+    list-style-type: none;
+    padding: 1em;
+    width: 15em;
+    background: rgb(148, 206, 176);
+  }

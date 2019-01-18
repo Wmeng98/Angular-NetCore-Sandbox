@@ -9,13 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MessageComponent } from './message/message.component';
 import { TodoDetailComponent } from './todo-detail/todo-detail.component'
 import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoComponent,
     MessageComponent,
-    TodoDetailComponent
+    TodoDetailComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
