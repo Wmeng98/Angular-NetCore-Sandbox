@@ -7,26 +7,36 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 using firstProjectWebApi.Models;
+using mockDB;
 
 
 namespace myFirstProject.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class toDoController : ControllerBase
     {
-        // temporary mock DB storing toDoListItems
-        private List<toDoItem> list;
-
-        public toDoController() { // tightly coupled implementation
-            list = new List<toDoItem>();
-        }
+        public static mockDataBase lsDB = new mockDataBase();
 
         [HttpGet]
         public IEnumerable<toDoItem> GetAll() {
             // temporary mock DB setup
-            this.list.Add(new toDoItem() { id = 0, shortDescription = "Placeholder", longDescription = "Feel free to delete this placeholder item from your list"});
-            return this.list;
+            return lsDB.list;
+        }
+
+        [HttpPost]
+        public toDoItem Insert([FromBody]toDoItem todoItem)
+        {
+            // add todoItem to list
+            // preprocess/check validity...
+            // update ID
+            Console.WriteLine("Current count is: " + lsDB.list.Count);
+            todoItem.id = lsDB.list.Count;
+            Console.WriteLine("*************************************");
+
+            lsDB.list.Add(todoItem);
+            return todoItem;
         }
     }
 
