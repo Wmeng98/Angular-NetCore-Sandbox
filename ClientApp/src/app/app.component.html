@@ -1,9 +1,15 @@
-<h1>{{title}}</h1>
+<div class="text-center">
+    <h1>{{title}}</h1>
 
-<nav>
-    <a routerLink="/home">Home</a>
-    <a routerLink="/todo">My List</a>
-</nav>
+    <nav>
+        <a routerLink="/home">Home</a>
+        <a routerLink="/todo">My List</a>
+    </nav>
+</div>
+
 
 <router-outlet></router-outlet>
-<app-message></app-message>
+
+<div class="text-center">
+    <app-message></app-message>
+</div>

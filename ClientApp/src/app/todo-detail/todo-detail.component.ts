@@ -3,6 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { toDoItem } from '../toDoItem';
 import { TodoService } from '../todo.service';
+import { isNgTemplate } from '@angular/compiler';
 
 @Component({
   selector: 'app-todo-detail',
@@ -10,7 +11,7 @@ import { TodoService } from '../todo.service';
   styleUrls: ['./todo-detail.component.css']
 })
 export class TodoDetailComponent implements OnInit {
-  @Input() item: toDoItem;
+  item: toDoItem;
 
   constructor(
     private route: ActivatedRoute,
@@ -29,9 +30,8 @@ export class TodoDetailComponent implements OnInit {
     const id = +this.route.snapshot.paramMap.get('id');
     console.log("id >>> " + id);
     this.todoService.getItem(id).subscribe(item => this.item = item);
+    // recall, subscribe is asynchronous...
   }
-
-
 
 
 }

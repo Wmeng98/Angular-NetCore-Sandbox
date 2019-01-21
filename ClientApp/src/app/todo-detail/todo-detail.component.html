@@ -1,11 +1,28 @@
-<div *ngIf="item">
-  <h2>TODO Item Details</h2>
-
-  <div><span>id: </span>{{item.id}}</div>
-  
+<div class="item-detail" *ngIf="item">
+  <h2>EDIT TODO Item Details ID: {{item.id}}</h2>
   <div>
-    <label>short description:
-      <input [(ngModel)]="item.shortdescription" placeholder="short">
-    </label>
+    <div>
+        <div class="container">
+            <div class="row">
+              <div class="col-sm-12">
+                  <label>Short Description:
+                      <input [(ngModel)]="item.shortdescription" placeholder="{{item.shortDescription}}">
+                  </label>
+              </div>
+            </div>  
+          </div>
+    </div>
+    <div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+              <label>Description of Item</label>
+          </div>
+          <div class="col-sm-9">
+              <textarea #long id="long" rows="2" cols="35" placeholder="{{item.longDescription}}"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
