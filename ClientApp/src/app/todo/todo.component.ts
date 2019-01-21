@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { toDoItem } from '../toDoItem';
 import { TodoService } from '../todo.service';
 
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-todo',
@@ -14,7 +17,11 @@ export class TodoComponent implements OnInit {
   todoList: toDoItem[];
 
 
-  constructor(private todoService: TodoService) { }
+  constructor(
+    private todoService: TodoService,
+    private router: Router,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit() {
     this.getList();
@@ -33,6 +40,20 @@ export class TodoComponent implements OnInit {
       this.todoList.push(item);
     });
   }
+
+  delete(item: toDoItem): void {
+    this.todoList.filter(i => i !== item);
+    this.todoService.deleteItem(item).subscribe(_ => this.getList());
+
+    // code logic before navigation... 
+    console.log("Navigating to: " + this.route + " after DELETION of todo item...");
+
+    // this.route still reference up to todo since delete view not apart of child route
+    this.router.navigate(['./'],{relativeTo:this.route});
+  }
+  // filter() method creates a new array with all 
+  // elements that pass the test implemented by the provided function.
+
 
 }
 

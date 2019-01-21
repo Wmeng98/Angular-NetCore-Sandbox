@@ -34,14 +34,30 @@ export class TodoService {
       catchError(this.handleError('getItems', []))
     );
   }
+    /** GET hero by id. Will 404 if id not found */
+    getItem(id: number): Observable<toDoItem> {
+      const url = `${this.todoListURl}/${id}`;
+      return this.http.get<toDoItem>(url).pipe(
+      tap(_ => this.log(`fetched ITEM id=${id}`)),
+      );
+  }
   // POST: add new item to the list
   addItem(item: toDoItem): Observable<toDoItem> {
-    
     return this.http.post<toDoItem>(this.todoListURl, item, httpOptions).pipe(
       tap((item: toDoItem) => this.log(`added item w/ id=${item.id}`)),
       catchError(this.handleError<toDoItem>('addItem'))
     );
   }
+  deleteItem(item: toDoItem | number): Observable<toDoItem> {
+    const id = typeof item === 'number' ? item : item.id;
+    console.log("id passed: " + id);
+    const url = `${this.todoListURl}/${id}`;
+
+    return this.http.delete<toDoItem>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted todo item id=${id}`)),
+      catchError(this.handleError<toDoItem>('deleteItem')));
+  }
+
 
 
 

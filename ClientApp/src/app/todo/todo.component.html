@@ -7,19 +7,6 @@
   </div>
 </div> -->
 
-<ul class="todo-list">
-    <li *ngFor="let item of todoList">
-        <!-- <a routerLink="/detail/{{hero.id}}"> -->
-          <a href="#">
-              <span class="badge">{{item.id}}</span> {{item.shortDescription}}
-          </a>
-        <!-- </a> -->
-        <!-- (click)="delete(hero)" -->
-        <button class="delete" title="delete hero">x</button> 
-    </li>
-    
-</ul>
-
 <form class="form-add-item">
     <div class="form-group">
       <label for="shortDescription-Input">Add Todo Item</label>
@@ -37,3 +24,20 @@
     
     </div>
 </form>
+
+<ul class="todo-list">
+    <li *ngFor="let item of todoList">
+        <!-- <a routerLink="/detail/{{hero.id}}"> -->
+          <a routerLink="detail/{{item.id}}">
+              <span class="badge">{{item.id}}</span> {{item.shortDescription}}
+          </a>
+        <!-- </a> -->
+        <!-- (click)="delete(hero)" -->
+        <button (click)="delete(item)" class="delete" title="delete hero">x</button> 
+    </li>
+</ul>
+
+<router-outlet></router-outlet>
+
+
+
