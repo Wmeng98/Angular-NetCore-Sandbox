@@ -68,6 +68,19 @@ namespace myFirstProject.Controllers
             lsDB.list.RemoveAt(index);
             return result;
         }
+
+        [HttpPut("{id}")]
+        public toDoItem Update(int id, [FromBody]toDoItem item)
+        {
+            // update mockDB
+            int index = lsDB.list.FindIndex(i => i.id == id);
+            lsDB.list[index].shortDescription = lsDB.list[index].shortDescription != item.shortDescription ? item.shortDescription : lsDB.list[index].shortDescription;
+            lsDB.list[index].longDescription = lsDB.list[index].longDescription != item.longDescription ? item.longDescription : lsDB.list[index].longDescription;
+
+            toDoItem target = lsDB.list[index]; 
+
+            return target;
+        }
     }
 
 }

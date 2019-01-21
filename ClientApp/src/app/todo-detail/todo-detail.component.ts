@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { toDoItem } from '../toDoItem';
 import { TodoService } from '../todo.service';
 import { isNgTemplate } from '@angular/compiler';
@@ -15,6 +15,7 @@ export class TodoDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private todoService: TodoService
   ) { }
 
@@ -31,6 +32,17 @@ export class TodoDetailComponent implements OnInit {
     console.log("id >>> " + id);
     this.todoService.getItem(id).subscribe(item => this.item = item);
     // recall, subscribe is asynchronous...
+  }
+
+  deleteItem(item: toDoItem): void {
+    this.todoService.deleteItem(item).subscribe(_ => this.router.navigate(['todo']));
+  }
+
+  save(item: toDoItem): void {
+    this.todoService.saveItem(item).subscribe(i => {
+      this.item = i;
+      this.router.navigate(['todo']);
+    });
   }
 
 

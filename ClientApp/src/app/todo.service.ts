@@ -57,6 +57,15 @@ export class TodoService {
       tap(_ => this.log(`deleted todo item id=${id}`)),
       catchError(this.handleError<toDoItem>('deleteItem')));
   }
+  saveItem(item: toDoItem): Observable<toDoItem> {
+    const id = item.id;
+    console.log("id passed: " + id);
+    const url = `${this.todoListURl}/${id}`;
+
+    return this.http.put<toDoItem>(url, item, httpOptions).pipe(
+      tap(i => this.log(`updated todo item id=${id}`)),
+      catchError(this.handleError<toDoItem>('updateItem')));
+  }
 
 
 

@@ -25,6 +25,13 @@ export class TodoComponent implements OnInit {
 
   ngOnInit() {
     this.getList();
+    this.route.url.subscribe(url =>{
+      console.log("Call me todo");
+      console.log(url);
+      this.getList();
+    });
+
+    // this.getList();
   }
   getList(): void {
     this.todoService.getItems().subscribe(list => this.todoList = list);

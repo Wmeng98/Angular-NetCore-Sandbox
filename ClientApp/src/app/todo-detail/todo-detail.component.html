@@ -6,7 +6,7 @@
             <div class="row">
               <div class="col-sm-12">
                   <label>Short Description:
-                      <input [(ngModel)]="item.shortdescription" placeholder="{{item.shortDescription}}">
+                      <input [(ngModel)]="item.shortdescription" type="text" placeholder="{{item.shortDescription}}">
                   </label>
               </div>
             </div>  
@@ -19,10 +19,13 @@
               <label>Description of Item</label>
           </div>
           <div class="col-sm-9">
-              <textarea #long id="long" rows="2" cols="35" placeholder="{{item.longDescription}}"></textarea>
+              <textarea [(ngModel)]="item.longDescription" #long id="long" rows="2" cols="35" placeholder="{{item.longDescription}}"></textarea>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <button (click)="save(item)" type="button" class="btn-space btn btn-success">Save</button>
+  <button (click)="deleteItem(item)" type="button" class="btn-space btn btn-danger">Delete</button>
 </div>
